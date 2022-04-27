@@ -25,6 +25,11 @@ namespace Blog_Pessoal
         public void ConfigureServices(IServiceCollection services)
         {
 
+            IConfigurationRoot config = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
             services.AddControllers();
         }
 
