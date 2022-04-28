@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog_Pessoal", "Blog_Pessoal\Blog_Pessoal.csproj", "{04BF0EC8-F133-44F9-8ECD-9C95011DCEA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog_Pessoal", "Blog_Pessoal\Blog_Pessoal.csproj", "{04BF0EC8-F133-44F9-8ECD-9C95011DCEA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog_Pessoal_Teste", "Blog_Pessoal_Teste\Blog_Pessoal_Teste.csproj", "{155DD6BB-A84D-4484-8502-6CDB7F289BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog_Pessoal_Teste", "Blog_Pessoal_Teste\Blog_Pessoal_Teste.csproj", "{155DD6BB-A84D-4484-8502-6CDB7F289BA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
