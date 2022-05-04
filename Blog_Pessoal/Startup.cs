@@ -1,4 +1,6 @@
 using Blog_Pessoal.src.data;
+using Blog_Pessoal.src.repositorios;
+using Blog_Pessoal.src.repositorios.implementacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +27,7 @@ namespace Blog_Pessoal
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
+
         {
             //Configuração Banco de Dados
             IConfigurationRoot config = new ConfigurationBuilder()
@@ -33,6 +36,12 @@ namespace Blog_Pessoal
                 .Build();
 
             services.AddDbContext<BlogPessoalContexto>(opt => opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
+            //Repositorios
+            services.AddScoped<IUsuario, UsuarioRepositorio>();
+            services.AddScoped<ITema, TemaRepositorio>();
+            services.AddScoped<IPostagem, PostagemRepositorio>();
+
 
             //Configuração Controladores
             services.AddControllers();
