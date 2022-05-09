@@ -43,12 +43,12 @@ namespace Blog_Pessoal.src.repositorios.implementacoes
             _contexto.SaveChanges();
         }
 
-        public List<TemaModelo> PegarTodosTemas(int id)
+        public List<TemaModelo> PegarTodosTemas()
         {
             return _contexto.Temas.ToList();
         }
 
-        public List<TemaModelo> PegarTemaPelaDescricao(string descricao)
+        public List<TemaModelo> PegarTemasPelaDescricao(string descricao)
         {
             return _contexto.Temas.Where(t => t.Descricao.Contains(descricao)).ToList();
         }

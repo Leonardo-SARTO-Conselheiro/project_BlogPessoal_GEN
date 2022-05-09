@@ -42,8 +42,8 @@ namespace Blog_Pessoal
             services.AddScoped<ITema, TemaRepositorio>();
             services.AddScoped<IPostagem, PostagemRepositorio>();
 
-
-            //Configuração Controladores
+            //Controladores
+            services.AddCors();
             services.AddControllers();
         }
 
@@ -58,12 +58,16 @@ namespace Blog_Pessoal
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(c => c
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
