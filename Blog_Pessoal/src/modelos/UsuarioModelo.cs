@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Blog_Pessoal.src.utilidades;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -24,6 +25,9 @@ namespace Blog_Pessoal.src.modelos
         public string Senha { get; set; }
 
         public string Foto { get; set; }
+
+        [Required]
+        public TipoUsuario Tipo { get; set; }
 
 
         [JsonIgnore]//é para ignorar a postagem, levar em consideração somente o UsuarioModelo

@@ -1,5 +1,6 @@
 ﻿using Blog_Pessoal.src.dtos;
 using Blog_Pessoal.src.repositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPessoal.src.controladores
@@ -22,13 +23,16 @@ namespace BlogPessoal.src.controladores
 
         #region Métodos
         [HttpGet("id/{idPostagem}")]
+        [Authorize]
         public IActionResult PegarPostagemPeloId([FromRoute] int idPostagem)
         {
             var postagem = _repositorio.PegarPostagemPeloId(idPostagem);
             if (postagem == null) return NotFound();
             return Ok(postagem);
         }
+
         [HttpGet]
+        [Authorize]
         public IActionResult PegarTodasPostagens()
         {
             var lista = _repositorio.PegarTodasPostagens();
@@ -36,6 +40,8 @@ namespace BlogPessoal.src.controladores
             return Ok(lista);
         }
         [HttpGet]
+        [Authorize]
+
         public IActionResult PegarPostagensPorPesquisa(
             [FromQuery] string titulo,
             [FromQuery] string descricaoTema,
@@ -46,21 +52,27 @@ namespace BlogPessoal.src.controladores
             if (postagens.Count < 1) return NoContent();
             return Ok(postagens);
         }
+
         [HttpPost]
+        [Authorize]
         public IActionResult NovaPostagem([FromBody] NovaPostagemDTO postagem)
         {
             if (!ModelState.IsValid) return BadRequest();
             _repositorio.NovaPostagem(postagem);
             return Created($"api/Postagens", postagem);
         }
+
         [HttpPut]
+        [Authorize]
         public IActionResult AtualizarPostagem([FromBody] AtualizarPostagemDTO postagem)
         {
             if (!ModelState.IsValid) return BadRequest();
             _repositorio.AtualizarPostagem(postagem);
             return Ok(postagem);
         }
+
         [HttpDelete("deletar/{idPostagem}")]
+        [Authorize]
         public IActionResult DeletarPostagem([FromRoute] int idPostagem)
         {
             _repositorio.DeletarPostagem(idPostagem);
