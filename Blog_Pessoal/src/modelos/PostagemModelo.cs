@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog_Pessoal.src.modelos
 {
+    /// <summary>
+    /// <para></para>
+    /// </summary>
     [Table("tb_postagens")]
     public class PostagemModelo
     {
@@ -18,10 +21,8 @@ namespace Blog_Pessoal.src.modelos
 
         public string Foto { get; set; }
 
-
-        [ForeignKey("fk_usuario")]// é a chave estrangeira da tabela usuarios
-        public UsuarioModelo Criador { get; set; } //é como se utilizarmos o reference, estamos referenciando o usuario 
-                                                   // que é criador das postagens
+        [ForeignKey("fk_usuario")]
+        public UsuarioModelo Criador { get; set; } 
         [ForeignKey("fk_tema")]
         public TemaModelo Tema { get; set; }
 

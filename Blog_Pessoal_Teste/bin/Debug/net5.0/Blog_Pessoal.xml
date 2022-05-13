@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blog_Pessoal</name>
+    </assembly>
+    <members>
+        <member name="T:Blog_Pessoal.src.dtos.NovaPostagemDTO">
+            <summary>
+            <para>Resumo: Classe espelho para criar uma nova postagem</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.dtos.AtualizarPostagemDTO">
+            <summary>
+            <para>Resumo: Classe espelho para alterar uma postagem</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.dtos.NovoTemaDTO">
+            <summary>
+            <para>Resumo: Classe espelho para criar um novo tema</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.dtos.AtualizarTemaDTO">
+            <summary>
+            <para>Resumo: Classe espelho para alterar um tema</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.dtos.NovoUsuarioDTO">
+            <summary>
+            <para>Resumo: Classe espelho para criar um novo usuario</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.dtos.AtualizarUsuarioDTO">
+            <summary>
+            <para>Resumo: Classe espelho para alterar um novo usuario</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.modelos.PostagemModelo">
+            <summary>
+            <para></para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.repositorios.IPostagem">
+            <summary>
+            <para>Resumo: Responsavel por representar ações de CRUD de postagem</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.repositorios.ITema">
+            <summary>
+            <para>Resumo: Responsavel por representar ações de CRUD de tema</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+        <member name="T:Blog_Pessoal.src.repositorios.IUsuario">
+            <summary>
+            <para>Resumo: Responsavel por representar ações de CRUD de usuario</para>
+            <para>Criado por: Leonardo Sarto</para>
+            <para>Versão: 1.0</para>
+            <para>Data: 29/04/2022</para>
+            </summary>
+        </member>
+    </members>
+</doc>
