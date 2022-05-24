@@ -2,7 +2,10 @@
 
 namespace Blog_Pessoal.src.utilidades
 {
-  [JsonConverter(typeof(JsonStringEnumConverter))]
+    /// <summary>
+    /// <para>Resumo: Enum responsavel por definir Tipos de usuario do sistema</para>
+    /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
   public enum TipoUsuario
     {
         NORMAL,
