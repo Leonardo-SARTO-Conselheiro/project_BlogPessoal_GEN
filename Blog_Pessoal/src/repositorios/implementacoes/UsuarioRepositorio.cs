@@ -8,6 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog_Pessoal.src.repositorios.implementacoes
 {
+    /// <summary>
+    /// <para>Resumo: Classe responsavel por implementar IUsuario</para>
+    /// <para>Criado por: Leonardo Sarto</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 12/05/2022</para>
+    /// </summary>
     public class UsuarioRepositorio : IUsuario
     {
         #region Atributos
@@ -27,11 +33,21 @@ namespace Blog_Pessoal.src.repositorios.implementacoes
 
         #region Métodos
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para pegar um usuario pelo Id</para>
+        /// </summary>
+        /// <param name="id">Id do usuario</param>
+        /// <return>UsuarioModelo</return>
         public async Task<UsuarioModelo> PegarUsuarioPeloIdAsync(int id)
         {
             return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Id == id);
         }
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para pegar usuarios pelo nome</para>
+        /// </summary>
+        /// <param name="nome">Nome do usuario</param>
+        /// <return>Lista UsuarioModelo</return>
         public async Task<List<UsuarioModelo>> PegarUsuariosPeloNomeAsync(string nome)
         {
             return await _contexto.Usuarios
@@ -39,11 +55,20 @@ namespace Blog_Pessoal.src.repositorios.implementacoes
                         .ToListAsync();
         }
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para pegar um usuario pelo email</para>
+        /// </summary>
+        /// <param name="email">Email do usuario</param>
+        /// <return>UsuarioModelo</return>
         public async Task<UsuarioModelo> PegarUsuarioPeloEmailAsync(string email)
         {
             return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para salvar um novo usuario</para>
+        /// </summary>
+        /// <param name="usuario">NovoUsuarioDTO</param>
         public async Task NovoUsuarioAsync(NovoUsuarioDTO usuario)
         {
             await _contexto.Usuarios.AddAsync(new UsuarioModelo
@@ -58,6 +83,10 @@ namespace Blog_Pessoal.src.repositorios.implementacoes
             await _contexto.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para atualizar um usuario</para>
+        /// </summary>
+        /// <param name="usuario">AtualizarUsuarioDTO</param>
         public async Task AtualizarUsuarioAsync(AtualizarUsuarioDTO usuario)
         {
             var usuarioExistente = await PegarUsuarioPeloIdAsync(usuario.Id);
@@ -68,6 +97,10 @@ namespace Blog_Pessoal.src.repositorios.implementacoes
             await _contexto.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para deletar um usuario</para>
+        /// </summary>
+        /// <param name="id">Id do usuario</param>
         public async Task DeletarUsuarioAsync(int id)
         {
             _contexto.Usuarios.Remove(await PegarUsuarioPeloIdAsync(id));
