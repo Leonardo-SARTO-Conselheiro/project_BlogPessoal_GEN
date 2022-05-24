@@ -73,7 +73,7 @@ namespace Blog_Pessoal.src.controladores
         /// <summary>
         /// Pegar Tema pela Descrição
         /// </summary>
-        /// <param name="descricaoTema"></param>
+        /// <param name="descricaoTema">string</param>
         /// <returns>ActionResult</returns>
         /// <response code = "200">Retorna uma lista de temas</response>
         /// <response code = "204">Tema não existe</response>
@@ -93,7 +93,7 @@ namespace Blog_Pessoal.src.controladores
         /// <summary>
         /// Criar novo Tema
         /// </summary>
-        /// <param name="tema">NovoUsuarioDTO</param>
+        /// <param name="tema">NovoTemaDTO</param>
         /// <returns>ActionResult</returns>
         /// <remarks>
         /// Exemplo de requisição:
@@ -122,7 +122,7 @@ namespace Blog_Pessoal.src.controladores
         /// <summary>
         /// Atualizar Tema
         /// </summary>
-        /// <param name="tema">AtualizarUsuarioDTO</param>
+        /// <param name="tema">AtualizarTemaDTO</param>
         /// <returns>ActionResult</returns>
         /// <remarks>
         /// Exemplo de requisição:

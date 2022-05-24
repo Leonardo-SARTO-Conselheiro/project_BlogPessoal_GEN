@@ -66,7 +66,7 @@ namespace Blog_Pessoal.src.controladores
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
         [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
-        public async Task<ActionResult> PegarUsuariosPeloNomeAsync([FromQuery] string nomeUsuario)
+        public async Task<ActionResult<List<UsuarioModelo>>> PegarUsuariosPeloNomeAsync([FromQuery] string nomeUsuario)
         {
             var usuarios = await _repositorio.PegarUsuariosPeloNomeAsync(nomeUsuario);
 
@@ -84,7 +84,7 @@ namespace Blog_Pessoal.src.controladores
         /// <response code="404">Email não existente</response>
         [HttpGet("email/{emailUsuario}")]
         [Authorize(Roles = "NORMAL,ADMINISTRADOR")]
-        public async Task<ActionResult> PegarUsuarioPeloEmailAsync([FromRoute] string emailUsuario)
+        public async Task<ActionResult<UsuarioModelo>> PegarUsuarioPeloEmailAsync([FromRoute] string emailUsuario)
         {
             var usuario = await _repositorio.PegarUsuarioPeloEmailAsync(emailUsuario);
 
