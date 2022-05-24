@@ -6,6 +6,12 @@ using System.Text.Json.Serialization;
 
 namespace Blog_Pessoal.src.modelos
 {
+    /// <summary>
+    /// <para>Resumo: Classe responsavel por representar tb_usuarios no banco.</para>
+    /// <para>Criado por: Leonardo Sarto</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 12/05/2022</para>
+    /// </summary>
     [Table("tb_usuarios")] 
     public class UsuarioModelo
     {
