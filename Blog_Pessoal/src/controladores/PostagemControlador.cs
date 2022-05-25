@@ -126,7 +126,7 @@ namespace Blog_Pessoal.src.controladores
         }
 
         /// <summary>
-        /// Atualizar Tema
+        /// Atualizar Postagem
         /// </summary>
         /// <param name="postagem">AtualizarPostagemDTO</param>
         /// <returns>ActionResult</returns>
@@ -165,7 +165,6 @@ namespace Blog_Pessoal.src.controladores
         /// <returns>ActionResult</returns>
         /// <response code="204">Postagem deletada</response>
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [HttpDelete("deletar/{idPostagem}")]
         [HttpDelete("deletar/{idPostagem}")]
         [Authorize]
         public async Task<ActionResult> DeletarPostagem([FromRoute] int idPostagem)
