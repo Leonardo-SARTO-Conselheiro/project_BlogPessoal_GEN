@@ -38,9 +38,17 @@ namespace Blog_Pessoal
 
         {
             //Configuração Banco de Dados
-            services.AddDbContext<BlogPessoalContexto>(
-                opt =>
-                    opt.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            if (Configuration["Enviroment:Start"] == "PROD")
+            {
+                services.AddEntityFrameworkNpgsql()
+                    .AddDbContext<BlogPessoalContexto>(
+                    opt => opt.UseNpgsql(Configuration["ConnectionStringsProd:DefaultConnection"]));
+            }
+            else
+            {
+                services.AddDbContext<BlogPessoalContexto>(
+                    opt => opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
+            }
 
             //Configuração Repositorios
             services.AddScoped<IUsuario, UsuarioRepositorio>();
@@ -120,10 +128,23 @@ namespace Blog_Pessoal
                 contexto.Database.EnsureCreated();
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1");
+                    c.RoutePrefix = string.Empty;
+                 });
             }
 
             //Ambiente de Produção
+            contexto.Database.EnsureCreated();
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             //Rotas
             app.UseRouting();
