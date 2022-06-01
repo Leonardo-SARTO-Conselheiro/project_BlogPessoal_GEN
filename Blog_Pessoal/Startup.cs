@@ -1,28 +1,24 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 using Blog_Pessoal.src.data;
 using Blog_Pessoal.src.repositorios;
 using Blog_Pessoal.src.repositorios.implementacoes;
 using Blog_Pessoal.src.servicos;
 using Blog_Pessoal.src.servicos.implementacoes;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Blog_Pessoal
+namespace BlogPessoal
 {
     public class Startup
     {
@@ -35,9 +31,8 @@ namespace Blog_Pessoal
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-
         {
-            //Configuração Banco de Dados
+            // Configuração Banco de Dados
             if (Configuration["Enviroment:Start"] == "PROD")
             {
                 services.AddEntityFrameworkNpgsql()
@@ -50,24 +45,23 @@ namespace Blog_Pessoal
                     opt => opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
             }
 
-            //Configuração Repositorios
+            // Configuração Repositorios
             services.AddScoped<IUsuario, UsuarioRepositorio>();
             services.AddScoped<ITema, TemaRepositorio>();
             services.AddScoped<IPostagem, PostagemRepositorio>();
 
-            //Configuração de Controladores
+            // Controladores
             services.AddCors();
             services.AddControllers();
 
-            //Configuração de Serviços
+            // Configuração de Serviços
             services.AddScoped<IAutenticacao, AutenticacaoServicos>();
 
-            //Configuração do Token Autenticação JWTBearer
+            // Configuração do Token Autenticação JWTBearer
             var chave = Encoding.ASCII.GetBytes(Configuration["Settings:Secret"]);
             services.AddAuthentication(a =>
             {
-                a.DefaultAuthenticateScheme =
-                JwtBearerDefaults.AuthenticationScheme;
+                a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(b =>
             {
@@ -82,7 +76,7 @@ namespace Blog_Pessoal
                 };
             });
 
-            //Configuração Swagger
+            // Configuração Swagger
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog Pessoal", Version = "v1" });
@@ -115,46 +109,45 @@ namespace Blog_Pessoal
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
-
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlogPessoalContexto contexto)
-        {   
-            //Ambiente de Desenvolvimento
+        {
+            // Ambiente de Desenvolvimento
             if (env.IsDevelopment())
             {
                 contexto.Database.EnsureCreated();
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
+                app.UseSwaggerUI(c => {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1");
                     c.RoutePrefix = string.Empty;
-                 });
+                });
             }
 
-            //Ambiente de Produção
+            // Ambiente de produção
             contexto.Database.EnsureCreated();
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
+            app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1");
                 c.RoutePrefix = string.Empty;
             });
 
-
-            //Rotas
+            // Ambiente de produção
+            // Rotas
             app.UseRouting();
 
             app.UseCors(c => c
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
 
-            //Autenticação e Autoização
+            // Autenticação e Autorização
             app.UseAuthentication();
             app.UseAuthorization();
 
